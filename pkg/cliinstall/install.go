@@ -7,8 +7,8 @@ import (
 	"os/exec"
 
 	"github.com/ghodss/yaml"
-	"github.com/rancher/k3os/pkg/config"
-	"github.com/rancher/k3os/pkg/questions"
+	"github.com/BlueKrypto/k3os/pkg/config"
+	"github.com/BlueKrypto/k3os/pkg/questions"
 )
 
 func Run() error {

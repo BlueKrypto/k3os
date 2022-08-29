@@ -1,6 +1,6 @@
 ARG REPO
 ARG TAG
-FROM ubuntu:focal
+FROM ubuntu:jammy
 
 RUN apt-get --assume-yes update \
  && apt-get --assume-yes install \
@@ -17,8 +17,8 @@ RUN apt-get --assume-yes update \
  && echo 'nls_iso8859_1' >> /etc/initramfs-tools/modules
 
 ARG ARCH
-ENV KVERSION=5.4.0-88-generic
-ENV URL=https://github.com/rancher/k3os-kernel/releases/download/5.4.0-88.99-rancher1
+ENV KVERSION=5.15.0-46-generic
+ENV URL=https://github.com/BlueKrypto/k3os-kernel/releases/download/5.15.0-46.49-bluekrypto1
 ENV KERNEL_XZ=${URL}/kernel-generic_${ARCH}.tar.xz
 ENV KERNEL_EXTRA_XZ=${URL}/kernel-extra-generic_${ARCH}.tar.xz
 ENV KERNEL_HEADERS_XZ=${URL}/kernel-headers-generic_${ARCH}.tar.xz

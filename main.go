@@ -9,9 +9,9 @@ import (
 
 	"github.com/docker/docker/pkg/mount"
 	"github.com/docker/docker/pkg/reexec"
-	"github.com/rancher/k3os/pkg/cli/app"
-	"github.com/rancher/k3os/pkg/enterchroot"
-	"github.com/rancher/k3os/pkg/transferroot"
+	"github.com/BlueKrypto/k3os/pkg/cli/app"
+	"github.com/BlueKrypto/k3os/pkg/enterchroot"
+	"github.com/BlueKrypto/k3os/pkg/transferroot"
 	"github.com/sirupsen/logrus"
 )
 

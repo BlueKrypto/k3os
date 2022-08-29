@@ -6,7 +6,7 @@ import (
 	"path/filepath"
 	"strings"
 
-	"github.com/rancher/k3os/pkg/system"
+	"github.com/BlueKrypto/k3os/pkg/system"
 )
 
 func Get(prefix ...string) (string, error) {

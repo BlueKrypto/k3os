@@ -1,4 +1,4 @@
-FROM golang:1.16-alpine3.14
+FROM golang:1.19-alpine3.16
 
 ARG DAPPER_HOST_ARCH
 ENV ARCH $DAPPER_HOST_ARCH
@@ -10,7 +10,7 @@ RUN if [ "$(go env GOARCH)" = "arm64" ]; then \
 
 ENV DAPPER_RUN_ARGS --privileged -v /tmp:/tmp -v k3os-pkg:/go/pkg -v k3os-cache:/root/.cache/go-build
 ENV DAPPER_ENV REPO TAG DRONE_TAG
-ENV DAPPER_SOURCE /go/src/github.com/rancher/k3os/
+ENV DAPPER_SOURCE /go/src/github.com/BlueKrypto/k3os/
 ENV DAPPER_OUTPUT ./build ./dist
 ENV DAPPER_DOCKER_SOCKET true
 ENV HOME ${DAPPER_SOURCE}
