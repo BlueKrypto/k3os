@@ -1,6 +1,6 @@
 Welcome to k3OS!
 
-Refer to https://github.com/rancher/k3os for README and issues.
+Refer to https://github.com/BlueKrypto/k3os for README and issues.
 
 The default mode of k3OS is to run a single node cluster. Use "kubectl"
 to access it. The node token in /var/lib/rancher/k3s/server/node-token

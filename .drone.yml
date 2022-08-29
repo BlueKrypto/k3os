@@ -28,8 +28,6 @@ steps:
     files:
     - "dist/artifacts/*"
   when:
-    instance:
-    - drone-publish.rancher.io
     ref:
     - refs/head/master
     - refs/tags/*
@@ -42,13 +40,11 @@ steps:
     dockerfile: package/Dockerfile
     password:
       from_secret: docker_password
-    repo: "rancher/k3os"
+    repo: "bluekrypto/k3os"
     tag: "${DRONE_TAG}-amd64"
     username:
       from_secret: docker_username
   when:
-    instance:
-    - drone-publish.rancher.io
     ref:
     - refs/head/master
     - refs/tags/*
@@ -90,8 +86,6 @@ steps:
     files:
     - "dist/artifacts/*"
   when:
-    instance:
-    - drone-publish.rancher.io
     ref:
     - refs/head/master
     - refs/tags/*
@@ -104,13 +98,11 @@ steps:
     dockerfile: package/Dockerfile
     password:
       from_secret: docker_password
-    repo: "rancher/k3os"
+    repo: "bluekrypto/k3os"
     tag: "${DRONE_TAG}-arm64"
     username:
       from_secret: docker_username
   when:
-    instance:
-    - drone-publish.rancher.io
     ref:
     - refs/head/master
     - refs/tags/*
@@ -152,8 +144,6 @@ steps:
     files:
     - "dist/artifacts/*"
   when:
-    instance:
-    - drone-publish.rancher.io
     ref:
     - refs/head/master
     - refs/tags/*
@@ -166,13 +156,11 @@ steps:
     dockerfile: package/Dockerfile
     password:
       from_secret: docker_password
-    repo: "rancher/k3os"
+    repo: "bluekrypto/k3os"
     tag: "${DRONE_TAG}-arm"
     username:
       from_secret: docker_username
   when:
-    instance:
-    - drone-publish.rancher.io
     ref:
     - refs/head/master
     - refs/tags/*
@@ -204,11 +192,9 @@ steps:
       - linux/amd64
       - linux/arm64
       - linux/arm
-    target: "rancher/k3os:${DRONE_TAG}"
-    template: "rancher/k3os:${DRONE_TAG}-ARCH"
+    target: "bluekrypto/k3os:${DRONE_TAG}"
+    template: "bluekrypto/k3os:${DRONE_TAG}-ARCH"
   when:
-    instance:
-    - drone-publish.rancher.io
     ref:
     - refs/head/master
     - refs/tags/*

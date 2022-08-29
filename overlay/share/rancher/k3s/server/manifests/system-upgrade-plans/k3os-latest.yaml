@@ -12,7 +12,7 @@ spec:
 
   # The value for `channel` is assumed to be a URL that returns HTTP 302 with the last path element of the value
   # returned in the Location header assumed to be an image tag.
-  channel: https://github.com/rancher/k3os/releases/latest
+  channel: https://github.com/BlueKrypto/k3os/releases/latest
 
   # Providing a value for `version` will prevent polling/resolution of the `channel` if specified.
   # version: v0.11.0-rc1
@@ -46,9 +46,9 @@ spec:
 
   # The prepare init container is run before cordon/drain which is run before the upgrade container.
   # Shares the same format as the `upgrade` container.
-  # This formulation will incur the rancher/k3os image download prior to the drain, minimizing unavailability.
+  # This formulation will incur the BlueKrypto/k3os image download prior to the drain, minimizing unavailability.
   prepare:
-    image: rancher/k3os
+    image: bluekrypto/k3os
     command: [k3os, --version]
     args: []
 
@@ -61,7 +61,7 @@ spec:
 
   upgrade:
     # The tag portion of the image will be overridden with the value from `.status.latestVersion` a.k.a. the resolved version.
-    image: rancher/k3os
+    image: bluekrypto/k3os
     command: [k3os, --debug]
     # It is safe to specify `--kernel` on overlay installations as the destination path will not exist and so the
     # upgrade of the kernel component will be skipped (with a warning in the log).

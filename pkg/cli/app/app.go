@@ -3,11 +3,11 @@ package app
 import (
 	"fmt"
 
-	"github.com/rancher/k3os/pkg/cli/config"
-	"github.com/rancher/k3os/pkg/cli/install"
-	"github.com/rancher/k3os/pkg/cli/rc"
-	"github.com/rancher/k3os/pkg/cli/upgrade"
-	"github.com/rancher/k3os/pkg/version"
+	"github.com/BlueKrypto/k3os/pkg/cli/config"
+	"github.com/BlueKrypto/k3os/pkg/cli/install"
+	"github.com/BlueKrypto/k3os/pkg/cli/rc"
+	"github.com/BlueKrypto/k3os/pkg/cli/upgrade"
+	"github.com/BlueKrypto/k3os/pkg/version"
 	"github.com/sirupsen/logrus"
 	"github.com/urfave/cli"
 )
