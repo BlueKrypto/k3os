@@ -6,9 +6,9 @@ import (
 	"os"
 	"strings"
 
-	"github.com/paultag/go-modprobe"
 	"github.com/BlueKrypto/k3os/pkg/config"
 	"github.com/sirupsen/logrus"
+	"pault.ag/go/modprobe"
 )
 
 const (

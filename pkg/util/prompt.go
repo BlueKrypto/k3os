@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/pkg/errors"
-	"golang.org/x/crypto/ssh/terminal"
+	"golang.org/x/term"
 )
 
 var (
@@ -34,13 +34,13 @@ func MaskPassword(r *os.File, w io.Writer) ([]byte, error) {
 	var p []byte
 	var err error
 	fd := int(r.Fd())
-	if terminal.IsTerminal(fd) {
-		s, e := terminal.MakeRaw(fd)
+	if term.IsTerminal(fd) {
+		s, e := term.MakeRaw(fd)
 		if e != nil {
 			return p, e
 		}
 		defer func() {
-			terminal.Restore(fd, s)
+			term.Restore(fd, s)
 			fmt.Fprintln(w)
 		}()
 	}
