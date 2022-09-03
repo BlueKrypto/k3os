@@ -54,6 +54,7 @@ func getKey(key string, withNet bool) (string, error) {
 	providers := map[string]string{
 		"github": "https://github.com/%s.keys",
 		"gitlab": "https://gitlab.com/%s.keys",
+		"custom": "%s",
 	}
 
 	url, err := url.Parse(key)

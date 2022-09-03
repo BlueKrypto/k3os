@@ -8,6 +8,7 @@
 *.swp
 /.bash_history
 /.docker/
+.devcontainer
 
 # Packer and vagrant
 .vagrant/
