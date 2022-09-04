@@ -6,15 +6,14 @@ import (
 	"os"
 	"os/exec"
 
-	"github.com/moby/sys/mount"
-	"github.com/moby/sys/mountinfo"
+	"github.com/BlueKrypto/k3os/pkg/mount"
 	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 	"golang.org/x/sys/unix"
 )
 
 func mountProc() error {
-	if ok, err := mountinfo.Mounted("/proc"); ok && err == nil {
+	if ok, err := mount.Mounted("/proc"); ok && err == nil {
 		return nil
 	}
 	logrus.Debug("mkdir /proc")
@@ -22,7 +21,7 @@ func mountProc() error {
 		return err
 	}
 	logrus.Debug("mount /proc")
-	return mount.Mount("proc", "/proc", "proc", "")
+	return mount.ForceMount("proc", "/proc", "proc", "")
 }
 
 func mountDev() error {
@@ -34,7 +33,7 @@ func mountDev() error {
 		return err
 	}
 	logrus.Debug("mounting /dev")
-	return mount.Mount("none", "/dev", "devtmpfs", "")
+	return mount.ForceMount("none", "/dev", "devtmpfs", "")
 }
 
 func mknod(path string, mode uint32, major, minor int) error {

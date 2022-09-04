@@ -9,9 +9,9 @@ import (
 
 	"github.com/BlueKrypto/k3os/pkg/cli/app"
 	"github.com/BlueKrypto/k3os/pkg/enterchroot"
+	"github.com/BlueKrypto/k3os/pkg/mount"
 	"github.com/BlueKrypto/k3os/pkg/transferroot"
 	"github.com/moby/moby/pkg/reexec"
-	"github.com/moby/sys/mount"
 	"github.com/sirupsen/logrus"
 )
 
