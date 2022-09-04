@@ -275,7 +275,7 @@ func run(data string) error {
 		return errors.Wrap(err, "pivot_root failed")
 	}
 
-	if err := mount.Mount("", ".", "none", "rprivate"); err != nil {
+	if err := mount.ForceMount("", ".", "none", "rprivate"); err != nil {
 		return errors.Wrapf(err, "making . private %s", data)
 	}
 
