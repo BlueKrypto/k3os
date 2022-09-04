@@ -9,7 +9,6 @@ TARGETS := $(shell ls scripts)
 
 $(TARGETS): .dapper
 	@rm -rf ./dist ./build
-	@go mod vendor
 	./.dapper $@
 
 .DEFAULT_GOAL := default

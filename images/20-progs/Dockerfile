@@ -18,7 +18,6 @@ COPY go.mod $GOPATH/src/github.com/BlueKrypto/k3os/
 COPY go.sum $GOPATH/src/github.com/BlueKrypto/k3os/
 COPY /pkg/ $GOPATH/src/github.com/BlueKrypto/k3os/pkg/
 COPY /main.go $GOPATH/src/github.com/BlueKrypto/k3os/
-COPY /vendor/ $GOPATH/src/github.com/BlueKrypto/k3os/vendor/
 WORKDIR $GOPATH/src/github.com/BlueKrypto/k3os
 RUN gobuild -mod=readonly -o /output/k3os
 
