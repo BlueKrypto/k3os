@@ -6,8 +6,6 @@ require (
 	github.com/ghodss/yaml v1.0.0
 	github.com/mattn/go-isatty v0.0.16
 	github.com/moby/moby v20.10.17+incompatible
-	github.com/moby/sys/mount v0.3.3
-	github.com/moby/sys/mountinfo v0.6.2
 	github.com/otiai10/copy v1.7.0
 	github.com/pkg/errors v0.9.1
 	github.com/rancher/mapper v0.0.0-20190814232720-058a8b7feb99
