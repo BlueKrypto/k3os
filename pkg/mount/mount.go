@@ -1,7 +1,7 @@
 //go:build linux
 // +build linux
 
-// borrowed and condenced from https://github.com/moby/moby/tree/v1.13.0/pkg/mount
+// borrowed and condenced from https://github.com/moby/moby/tree/v1.13.1/pkg/mount
 
 package mount
 
@@ -11,6 +11,8 @@ import (
 	"io"
 	"os"
 	"strings"
+
+	"golang.org/x/sys/unix"
 )
 
 // Info reveals information about a particular mounted filesystem. This
@@ -138,4 +140,42 @@ func parseInfoFile(r io.Reader) ([]*Info, error) {
 		out = append(out, p)
 	}
 	return out, nil
+}
+
+// Mount will mount filesystem according to the specified configuration, on the
+// condition that the target path is *not* already mounted. Options must be
+// specified like the mount or fstab unix commands: "opt1=val1,opt2=val2". See
+// flags.go for supported option flags.
+func Mount(device, target, mType, options string) error {
+	flag, _ := parseOptions(options)
+	if flag&REMOUNT != REMOUNT {
+		if mounted, err := Mounted(target); err != nil || mounted {
+			return err
+		}
+	}
+	return ForceMount(device, target, mType, options)
+}
+
+// ForceMount will mount a filesystem according to the specified configuration,
+// *regardless* if the target path is not already mounted. Options must be
+// specified like the mount or fstab unix commands: "opt1=val1,opt2=val2". See
+// flags.go for supported option flags.
+func ForceMount(device, target, mType, options string) error {
+	flag, data := parseOptions(options)
+	if err := mount(device, target, mType, uintptr(flag), data); err != nil {
+		return err
+	}
+	return nil
+}
+
+func mount(device, target, mType string, flag uintptr, data string) error {
+	if err := unix.Mount(device, target, mType, flag, data); err != nil {
+		return err
+	}
+
+	// If we have a bind mount or remount, remount...
+	if flag&unix.MS_BIND == unix.MS_BIND && flag&unix.MS_RDONLY == unix.MS_RDONLY {
+		return unix.Mount(device, target, mType, flag|unix.MS_REMOUNT, data)
+	}
+	return nil
 }
