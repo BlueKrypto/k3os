@@ -2,6 +2,7 @@
 FROM alpine:3.16 as base
 ARG ARCH
 RUN apk --no-cache add \
+    aws-cli \
     bash \
     bash-completion \
     blkid \

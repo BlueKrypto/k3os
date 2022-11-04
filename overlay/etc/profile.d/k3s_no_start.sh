@@ -1,0 +1,1 @@
+export INSTALL_K3S_SKIP_START=true
