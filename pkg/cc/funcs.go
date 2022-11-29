@@ -128,10 +128,8 @@ func ApplyK3S(cfg *config.CloudConfig, restart, install bool) error {
 		}
 	}
 
-	if strings.HasPrefix(cfg.K3OS.Token, "K10") {
+	if cfg.K3OS.Token != "" {
 		vars = append(vars, fmt.Sprintf("K3S_TOKEN=%s", cfg.K3OS.Token))
-	} else if cfg.K3OS.Token != "" {
-		vars = append(vars, fmt.Sprintf("K3S_CLUSTER_SECRET=%s", cfg.K3OS.Token))
 	}
 
 	var labels []string
