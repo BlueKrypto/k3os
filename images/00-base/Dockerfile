@@ -55,6 +55,7 @@ RUN apk --no-cache add \
     rng-tools \
     rsync \
     strace \
+    strongswan \
     smartmontools \
     sudo \
     tar \
