@@ -122,7 +122,17 @@ platform:
   os: linux
   arch: arm
 
+clone:
+  image: "drone/git:linux-arm"
+  # disable: true
+
 steps:
+# - name: clone
+#   image: alpine/git
+#   commands:
+#   - git clone $DRONE_GIT_HTTP_URL .
+#   - git checkout $DRONE_COMMIT
+
 - name: build
   image: rancher/dapper:v0.6.0
   commands:
