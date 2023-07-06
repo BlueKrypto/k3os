@@ -128,9 +128,6 @@ clone:
 steps:
 - name: clone
   image: "drone/git:linux-arm"
-  commands:
-  - git clone $DRONE_GIT_HTTP_URL .
-  - git checkout $DRONE_COMMIT
 
 - name: build
   image: rancher/dapper:v0.6.0
