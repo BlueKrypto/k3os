@@ -134,7 +134,7 @@ steps:
   - git checkout $DRONE_COMMIT -b $DRONE_BRANCH
 
 - name: build
-  image: rancher/dapper:v0.6.0
+  image: rancher/dapper:v0.5.0
   commands:
   - dapper ci
   volumes:
