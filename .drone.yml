@@ -122,10 +122,10 @@ platform:
   os: linux
   arch: arm
 
-steps:
-- name: clone
+clone:
   image: "drone/git:linux-arm"
 
+steps:
 - name: build
   image: rancher/dapper:v0.6.0
   commands:
