@@ -123,9 +123,15 @@ platform:
   arch: arm
 
 clone:
-  image: "drone/git:linux-arm"
+  disable: true
 
 steps:
+- name: clone
+  image: "drone/git:linux-arm"
+  commands:
+  - git clone $DRONE_REMOTE_URL .
+  - git checkout $DRONE_COMMIT
+
 - name: build
   image: rancher/dapper:v0.6.0
   commands:
