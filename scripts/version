@@ -20,6 +20,7 @@ fi
 ARCH=${ARCH:-"amd64"}
 TAG=${TAG:-"${VERSION}-${ARCH}"}
 REPO=${REPO:-bluekrypto}
+BRANCH="$(git rev-parse --abbrev-ref HEAD)"
 
 if echo $TAG | grep -q dirty; then
     TAG=dev

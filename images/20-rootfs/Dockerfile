@@ -96,6 +96,7 @@ RUN ln -s k3s /usr/src/image/sbin/crictl
 RUN ln -s k3s /usr/src/image/sbin/ctr
 
 COPY install.sh /usr/src/image/libexec/k3os/install
-RUN sed -i -e "s/%VERSION%/${VERSION}/g" -e "s/%ARCH%/${ARCH}/g" /usr/src/image/lib/os-release
+RUN sed -i -e "s/%VERSION%/${VERSION}/g" -e "s/%BRANCH%/${BRANCH}/g" -e "s/%ARCH%/${ARCH}/g" /usr/src/image/lib/os-release
+RUN sed -i -e "s/%BRANCH%/${BRANCH}/g" /usr/src/image/share/rancher/k3s/server/manifests/system-upgrade-plans/k3os-latest.yaml
 RUN mkdir -p /output && \
     mksquashfs /usr/src/image /output/rootfs.squashfs
