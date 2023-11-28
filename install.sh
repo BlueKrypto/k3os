@@ -85,7 +85,7 @@ do_format()
     else
         BOOT_NUM=
         STATE_NUM=1
-        parted -s ${DEVICE} mkpart primary ext4 0% 1500MB
+        parted -s ${DEVICE} mkpart primary ext4 0% 1536MB
     fi
     parted -s ${DEVICE} set 1 ${BOOTFLAG} on
     partprobe ${DEVICE} 2>/dev/null || true
