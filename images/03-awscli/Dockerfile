@@ -2,7 +2,7 @@ ARG ALPINE_VERSION=3.17
 FROM python:3.11.4-alpine${ALPINE_VERSION} as builder
 # Pinned at 3.11 due to pyinstaller
 
-ARG AWS_CLI_VERSION=2.12.7
+ARG AWS_CLI_VERSION=2.14.2
 RUN apk add --no-cache git unzip groff build-base libffi-dev cmake
 RUN git clone --single-branch --depth 1 -b ${AWS_CLI_VERSION} https://github.com/aws/aws-cli.git
 
