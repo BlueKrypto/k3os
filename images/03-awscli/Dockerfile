@@ -1,5 +1,5 @@
 ARG ALPINE_VERSION=3.19
-FROM python:3.11.4-alpine${ALPINE_VERSION} as builder
+FROM python:3.13.0a6-alpine${ALPINE_VERSION} as builder
 # Pinned at 3.11 due to pyinstaller
 
 ARG AWS_CLI_VERSION=2.12.7
