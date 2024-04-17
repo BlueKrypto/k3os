@@ -3,7 +3,7 @@ ARG TAG
 ARG VERSION
 FROM ${REPO}/k3os-gobuild:${TAG} as gobuild
 
-ENV LINUXKIT v1.0.1
+ENV LINUXKIT v1.2.0
 
 FROM gobuild as linuxkit
 ENV GO111MODULE off
