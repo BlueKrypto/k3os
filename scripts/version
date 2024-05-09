@@ -20,7 +20,7 @@ fi
 ARCH=${ARCH:-"amd64"}
 TAG=${TAG:-"${VERSION}-${ARCH}"}
 REPO=${REPO:-bluekrypto}
-BRANCH="$(git branch --show-current)"
+BRANCH=$DRONE_TARGET_BRANCH
 
 if echo $TAG | grep -q dirty; then
     TAG=dev
