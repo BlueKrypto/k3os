@@ -1,4 +1,4 @@
-FROM golang:1.21.5-alpine3.17 AS gobuild
+FROM golang:1.20.0-alpine3.17 AS gobuild
 RUN apk -U add git gcc linux-headers musl-dev make libseccomp libseccomp-dev bash
 COPY gobuild /usr/bin/
 RUN rm -f /bin/sh && ln -s /bin/bash /bin/sh
