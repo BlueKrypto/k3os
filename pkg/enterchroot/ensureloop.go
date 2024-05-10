@@ -2,7 +2,6 @@ package enterchroot
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 
@@ -25,7 +24,7 @@ func mountProc() error {
 }
 
 func mountDev() error {
-	if files, err := ioutil.ReadDir("/dev"); err == nil && len(files) > 2 {
+	if files, err := os.ReadDir("/dev"); err == nil && len(files) > 2 {
 		return nil
 	}
 	logrus.Debug("mkdir /dev")

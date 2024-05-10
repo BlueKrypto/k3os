@@ -1,7 +1,7 @@
 package sysctl
 
 import (
-	"io/ioutil"
+	"os"
 	"path"
 	"strings"
 
@@ -13,7 +13,7 @@ func ConfigureSysctl(cfg *config.CloudConfig) error {
 		elements := []string{"/proc", "sys"}
 		elements = append(elements, strings.Split(k, ".")...)
 		path := path.Join(elements...)
-		if err := ioutil.WriteFile(path, []byte(v), 0644); err != nil {
+		if err := os.WriteFile(path, []byte(v), 0644); err != nil {
 			return err
 		}
 	}
