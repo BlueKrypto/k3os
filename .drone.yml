@@ -127,7 +127,7 @@ clone:
 
 steps:
 - name: clone
-  image: "drone/git:linux-arm"
+  image: drone/git:linux-arm
   commands:
   - git clone $DRONE_REMOTE_URL .
   - git fetch origin +refs/heads/$DRONE_BRANCH
