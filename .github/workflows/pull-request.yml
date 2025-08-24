@@ -1,0 +1,12 @@
+name: Pull Request Build
+
+on:
+  pull_request:
+
+jobs:
+  call-dapper-build:
+    uses: ./.github/workflows/template-build.yml
+    with:
+      release-tag-name: pull-${{ github.event.number }}
+      push: false
+    secrets: inherit

@@ -1,4 +1,4 @@
-FROM golang:1.22.2-alpine3.19
+FROM golang:1.22.12-alpine3.21
 
 ARG DAPPER_HOST_ARCH
 ENV ARCH $DAPPER_HOST_ARCH
@@ -7,6 +7,10 @@ RUN apk -U add bash git gcc musl-dev docker vim less file curl wget ca-certifica
 RUN if [ "$(go env GOARCH)" = "arm64" ]; then \
         curl -sL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s v1.51.1; \
     fi
+
+# The docker version in dapper is too old to have buildx. Install it manually.
+RUN curl -sSfL https://github.com/docker/buildx/releases/download/v0.14.1/buildx-v0.14.1.linux-${ARCH//\/v7/64} -o /usr/local/bin/buildx && \
+    chmod +x /usr/local/bin/buildx
 
 ENV DAPPER_RUN_ARGS --privileged -v /tmp:/tmp -v k3os-pkg:/go/pkg -v k3os-cache:/root/.cache/go-build
 ENV DAPPER_ENV REPO TAG DRONE_TAG BRANCH DRONE_TARGET_BRANCH

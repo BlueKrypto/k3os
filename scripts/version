@@ -17,7 +17,9 @@ if [ -z "$ARCH" ]; then
     ARCH=$(go env GOHOSTARCH)
 fi
 
-ARCH=${ARCH:-"amd64"}
+ARCH="${ARCH:-"amd64"}"
+# buildx uses arm/v7
+ARCH="${ARCH//\/v7/}"
 TAG=${TAG:-"${VERSION}-${ARCH}"}
 REPO=${REPO:-bluekrypto}
 BRANCH=${DRONE_TARGET_BRANCH:-$(git branch --show-current)}

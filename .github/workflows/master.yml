@@ -1,0 +1,15 @@
+name: Branch Build and Publish
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  call-dapper-build:
+    uses: ./.github/workflows/template-build.yml
+    with:
+      release-tag-name: ${{ github.ref_name }}-head
+      push: true
+      release: true
+    secrets: inherit
