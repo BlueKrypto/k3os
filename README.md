@@ -2,6 +2,13 @@
 ![GitHub go.mod Go version](https://img.shields.io/github/go-mod/go-version/BlueKrypto/k3os)
 ![GitHub release (latest SemVer including pre-releases)](https://img.shields.io/github/v/release/BlueKrypto/k3os?include_prereleases&label=release&sort=semver)
 
+> # :warning: Notice:
+> This project is about to get some major changes. As many of you are aware k3s currently maintains kubernetes version 1.24, 1.25, 1.26, 1.27, and 1.28. To this point this project has been on 1.24 since I have taken over the project. I currently working on a way to support multiple version and as such will be making changes in the near future. As part of this I will be attempting to update the docs. Some of these changes include (but are not limited to):
+> * This project will maintain, as up to date as possible, the versions being released of k3s
+> * I will be aligning the version to match that of k3s (no more 0.x)
+> * Each version will be maintained in it's own branch
+> * The master branch will be the base os template only
+
 # k3OS
 
 k3OS is a Linux distribution designed to remove as much OS maintenance

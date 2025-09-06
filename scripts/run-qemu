@@ -4,6 +4,9 @@
 
 set -e
 
+# buildx uses arm/v7, so remove the "/v7" part
+ARCH="${ARCH//\/v7/}"
+
 if [ "$ARCH" = "amd64" ]; then
     QEMU_SYSTEM="qemu-system-x86_64"
 elif [ "$ARCH" = "arm64" ]; then
