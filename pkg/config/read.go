@@ -2,14 +2,13 @@ package config
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"path/filepath"
 	"regexp"
 	"strings"
 
-	"github.com/ghodss/yaml"
 	"github.com/BlueKrypto/k3os/pkg/system"
+	"github.com/ghodss/yaml"
 	"github.com/rancher/mapper"
 	"github.com/rancher/mapper/convert"
 	merge2 "github.com/rancher/mapper/convert/merge"
@@ -116,7 +115,7 @@ func readLocalConfig() (map[string]interface{}, error) {
 func readLocalConfigs() []reader {
 	var result []reader
 
-	files, err := ioutil.ReadDir(localConfigs)
+	files, err := os.ReadDir(localConfigs)
 	if os.IsNotExist(err) {
 		return nil
 	} else if err != nil {
@@ -138,7 +137,7 @@ func readLocalConfigs() []reader {
 }
 
 func readFile(path string) (map[string]interface{}, error) {
-	f, err := ioutil.ReadFile(path)
+	f, err := os.ReadFile(path)
 	if os.IsNotExist(err) {
 		return nil, nil
 	} else if err != nil {
@@ -160,7 +159,7 @@ func readCmdline() (map[string]interface{}, error) {
 		return nil, nil
 	}
 
-	bytes, err := ioutil.ReadFile("/proc/cmdline")
+	bytes, err := os.ReadFile("/proc/cmdline")
 	if os.IsNotExist(err) {
 		return nil, nil
 	} else if err != nil {

@@ -6,7 +6,6 @@ package enterchroot
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -68,7 +67,7 @@ func isDebug() bool {
 		return false
 	}
 
-	bytes, err := ioutil.ReadFile("/proc/cmdline")
+	bytes, err := os.ReadFile("/proc/cmdline")
 	if err != nil {
 		// ignore error
 		return false
@@ -311,7 +310,7 @@ func checkSquashfs() error {
 }
 
 func inProcFS() bool {
-	bytes, err := ioutil.ReadFile("/proc/filesystems")
+	bytes, err := os.ReadFile("/proc/filesystems")
 	if err != nil {
 		logrus.Errorf("Failed to read /proc/filesystems: %v", err)
 		return false

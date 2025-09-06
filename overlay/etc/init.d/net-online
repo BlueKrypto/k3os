@@ -53,6 +53,15 @@ start ()
 			[ "$operstate" = up ] && : $((configured += 1))
 		done
 		[ $configured -ge ${minimum_up:-${ifcount}} ] && [ $carriers -ge 1 ] && break
+
+		status=$(service connman status)
+		ebegin "Checking Connman status"
+
+		if [ "$status" != "status: started" ]; then
+			eindent "Connman Status not started, trying to start"
+			service connman start
+		fi
+
 		sleep 1
 		: $((timeout -= 1))
 	done

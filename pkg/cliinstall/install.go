@@ -2,13 +2,12 @@ package cliinstall
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 
-	"github.com/ghodss/yaml"
 	"github.com/BlueKrypto/k3os/pkg/config"
 	"github.com/BlueKrypto/k3os/pkg/questions"
+	"github.com/ghodss/yaml"
 )
 
 func Run() error {
@@ -79,7 +78,7 @@ func runInstall(cfg config.CloudConfig) error {
 	}
 
 	if cfg.K3OS.Install.ConfigURL == "" {
-		tempFile, err = ioutil.TempFile("/tmp", "k3os.XXXXXXXX")
+		tempFile, err = os.CreateTemp("/tmp", "k3os.XXXXXXXX")
 		if err != nil {
 			return err
 		}

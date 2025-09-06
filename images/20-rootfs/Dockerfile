@@ -13,6 +13,7 @@ FROM ${REPO}/k3os-k3s:${TAG} as k3s
 FROM base as k3os-build
 ARG VERSION
 ARG ARCH
+ARG BRANCH
 RUN apk add squashfs-tools
 COPY --from=base /bin /usr/src/image/bin/
 COPY --from=base /lib /usr/src/image/lib/
@@ -96,6 +97,8 @@ RUN ln -s k3s /usr/src/image/sbin/crictl
 RUN ln -s k3s /usr/src/image/sbin/ctr
 
 COPY install.sh /usr/src/image/libexec/k3os/install
-RUN sed -i -e "s/%VERSION%/${VERSION}/g" -e "s/%ARCH%/${ARCH}/g" /usr/src/image/lib/os-release
+RUN sed -i -e "s/%VERSION%/${VERSION}/g" -e "s/%BRANCH%/${BRANCH}/g" -e "s/%ARCH%/${ARCH}/g" /usr/src/image/lib/os-release
+RUN sed -i -e "s/%BRANCH%/${BRANCH}/g" /usr/src/image/share/rancher/k3s/server/manifests/system-upgrade-plans/k3os-minor-version.yaml
+RUN sed -i -e "s/%BRANCH%/${BRANCH}/g" /usr/src/image/share/rancher/k3s/server/manifests/system-upgrade-plans/k3os-minor-version-rc.yaml
 RUN mkdir -p /output && \
     mksquashfs /usr/src/image /output/rootfs.squashfs

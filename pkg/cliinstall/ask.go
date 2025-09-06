@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"strings"
@@ -192,12 +191,12 @@ func AskPassword(cfg *config.CloudConfig) error {
 		return nil
 	}
 
-	oldShadow, err := ioutil.ReadFile("/etc/shadow")
+	oldShadow, err := os.ReadFile("/etc/shadow")
 	if err != nil {
 		return err
 	}
 	defer func() {
-		ioutil.WriteFile("/etc/shadow", oldShadow, 0640)
+		os.WriteFile("/etc/shadow", oldShadow, 0640)
 	}()
 
 	cmd := exec.Command("chpasswd")

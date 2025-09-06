@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"bytes"
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"sort"
@@ -197,7 +196,7 @@ func ApplyDNS(cfg *config.CloudConfig) error {
 		buf.WriteString("\n")
 	}
 
-	err := ioutil.WriteFile("/etc/connman/main.conf", buf.Bytes(), 0644)
+	err := os.WriteFile("/etc/connman/main.conf", buf.Bytes(), 0644)
 	if err != nil {
 		return fmt.Errorf("failed to write /etc/connman/main.conf: %v", err)
 	}
@@ -220,7 +219,7 @@ func ApplyWifi(cfg *config.CloudConfig) error {
 		if err := os.MkdirAll("/var/lib/connman", 0755); err != nil {
 			return fmt.Errorf("failed to mkdir /var/lib/connman: %v", err)
 		}
-		if err := ioutil.WriteFile("/var/lib/connman/settings", buf.Bytes(), 0644); err != nil {
+		if err := os.WriteFile("/var/lib/connman/settings", buf.Bytes(), 0644); err != nil {
 			return fmt.Errorf("failed to write to /var/lib/connman/settings: %v", err)
 		}
 	}
@@ -246,7 +245,7 @@ func ApplyWifi(cfg *config.CloudConfig) error {
 	}
 
 	if buf.Len() > 0 {
-		return ioutil.WriteFile("/var/lib/connman/cloud-config.config", buf.Bytes(), 0644)
+		return os.WriteFile("/var/lib/connman/cloud-config.config", buf.Bytes(), 0644)
 	}
 
 	return nil
@@ -264,7 +263,7 @@ func ApplyDataSource(cfg *config.CloudConfig) error {
 	buf.WriteString(args)
 	buf.WriteString("\"\n")
 
-	if err := ioutil.WriteFile("/etc/conf.d/cloud-config", buf.Bytes(), 0644); err != nil {
+	if err := os.WriteFile("/etc/conf.d/cloud-config", buf.Bytes(), 0644); err != nil {
 		return fmt.Errorf("failed to write to /etc/conf.d/cloud-config: %v", err)
 	}
 
@@ -276,7 +275,7 @@ func ApplyEnvironment(cfg *config.CloudConfig) error {
 		return nil
 	}
 	env := make(map[string]string, len(cfg.K3OS.Environment))
-	if buf, err := ioutil.ReadFile("/etc/environment"); err == nil {
+	if buf, err := os.ReadFile("/etc/environment"); err == nil {
 		scanner := bufio.NewScanner(bytes.NewReader(buf))
 		for scanner.Scan() {
 			line := scanner.Text()
@@ -309,7 +308,7 @@ func ApplyEnvironment(cfg *config.CloudConfig) error {
 		buf.WriteString(strconv.Quote(val))
 		buf.WriteString("\n")
 	}
-	if err := ioutil.WriteFile("/etc/environment", buf.Bytes(), 0644); err != nil {
+	if err := os.WriteFile("/etc/environment", buf.Bytes(), 0644); err != nil {
 		return fmt.Errorf("failed to write to /etc/environment: %v", err)
 	}
 

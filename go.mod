@@ -11,7 +11,7 @@ require (
 	github.com/rancher/mapper v0.0.0-20190814232720-058a8b7feb99
 	github.com/sirupsen/logrus v1.9.0
 	github.com/urfave/cli v1.22.9
-	golang.org/x/sys v0.0.0-20220829200755-d48e67d00261
+	golang.org/x/sys v0.20.0
 	gopkg.in/freddierice/go-losetup.v1 v1.0.0-20170407175016-fc9adea44124
 	pault.ag/go/modprobe v0.1.2
 )

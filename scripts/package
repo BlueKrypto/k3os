@@ -25,6 +25,7 @@ buildx build \
   --build-arg REPO=${REPO} \
   --build-arg TAG=${TAG} \
   --build-arg VERSION=${VERSION} \
+  --build-arg BRANCH=${BRANCH} \
   --file package/Dockerfile \
   --tag ${REPO}/k3os:${TAG} \
   --tag ${REPO}/k3os:latest \

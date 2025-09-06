@@ -2,7 +2,6 @@ package writefile
 
 import (
 	"fmt"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"path"
@@ -46,10 +45,10 @@ func WriteFile(f *config.File, root string) (string, error) {
 	}
 	var tmp *os.File
 	// create a temporary file in the same directory to ensure it's on the same filesystem
-	if tmp, err = ioutil.TempFile(d, "wfs-temp"); err != nil {
+	if tmp, err = os.CreateTemp(d, "wfs-temp"); err != nil {
 		return "", err
 	}
-	if err := ioutil.WriteFile(tmp.Name(), []byte(f.Content), perm); err != nil {
+	if err := os.WriteFile(tmp.Name(), []byte(f.Content), perm); err != nil {
 		return "", err
 	}
 	if err := tmp.Close(); err != nil {
